@@ -1,22 +1,15 @@
-import java.util.*;
-
 public class cauchy {
     public static double contour(double p) {
-        double contour = p - 1;
+        double contour = (p * p + 1); // Defined as per the region
         contour = Math.sqrt(contour);
-        return contour;
-    }
-
-    public static double function(double p) {
-        double x = ((p - 2) * (p + 3));
-        return x;
+        return Math.abs(contour);
     }
 
     public static double[] polecalc() {
         double[] poles = new double[2];
-        int j = 0; 
+        int j = 0;
         for (double i = -10; i < 10; i++) {
-            double pole = function(i);
+            double pole = ((i - 2) * (i + 3));
             if (pole == 0) {
                 poles[j] = i;
                 j++;
@@ -46,14 +39,16 @@ public class cauchy {
     public static void main(String[] args) {
         double[] residue = new double[3];
         double[] poles = polecalc();
-        double radius = 1.5;
+        double radius = 1;
 
         double a1 = contour(poles[0]);
         double a2 = contour(poles[1]);
 
-        System.out.println("The function for integral calculation is: z/(z-2)(z+3) \n");
-        System.out.println("Hence the poles for f(z) are " + poles[0] + " and " + poles[1] + " which are simple poles.\n");
+        System.out.println("\nThe function for integral calculation is: z/(z-2)(z+3) \n");
+        System.out.println(
+                "Hence the poles for f(z) are " + poles[0] + " and " + poles[1] + " which are simple poles.\n");
         System.out.println("For the given region |z - 1| = 1.5: \n");
+
         if (a1 > radius) {
             residue[0] = 0;
             System.out.println("The pole " + poles[0] + " lies outside the given countour, hence its residue is zero.");
@@ -64,6 +59,7 @@ public class cauchy {
             residue[1] = 0;
         } else
             residuecalc(poles[1], residue);
+
         System.out.println("The residue is " + residue[0] + " and " + residue[1] + " for poles " + poles[0] + " and "
                 + poles[1] + " respectively.");
         integral(residue);
