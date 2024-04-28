@@ -1,7 +1,6 @@
-import java.util.Arrays;
+import java.util.*;
 
 public class cauchy {
-
     public static double contour(double p) {
         double contour = p - 1;
         contour = Math.sqrt(contour);
@@ -53,8 +52,7 @@ public class cauchy {
         double a2 = contour(poles[1]);
 
         System.out.println("The function for integral calculation is: z/(z-2)(z+3) \n");
-        System.out
-                .println("Hence the poles for f(z) are " + poles[0] + " and " + poles[1] + " which are simple poles.\n");
+        System.out.println("Hence the poles for f(z) are " + poles[0] + " and " + poles[1] + " which are simple poles.\n");
         System.out.println("For the given region |z - 1| = 1.5: \n");
         if (a1 > radius) {
             residue[0] = 0;
